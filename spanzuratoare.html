@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="text" id="myText" value="Some text">
+<button onclick="myFunction()">Introduce cuvant</button>
+<br>
+<input type="text" id="myText2" value="Scrie">
+<button onclick="myFunction2()">Cauta litera</button>
+<p id="demo"></p>
+<p id="dea"></p>
+
+<script>
+var StrInput = " ", StrOutput;
+function myFunction() {
+	var input = document.getElementById("myText").value;
+	StrInput  = input;
+	StrOutput = StrInput;
+	for (var i = 0; i < StrOutput.length; ++i) {
+        StrOutput = StrOutput.replace(StrOutput[i],"'");
+    }
+}
+
+String.prototype.replaceAt = function(index, replacement) {
+    if (index >= this.length) {
+        return this.valueOf();
+    }
+    return this.substring(0, index) + replacement + this.substring(index + 1);
+}
+ 
+function myFunction2 () {
+	var ok = 0, ct = 0;
+	var letter = document.getElementById("myText2").value;
+	for (var i = 0; i < StrInput.length;++i) {
+        if (letter == StrInput[i]) {
+            ok = 1;
+            StrOutput = StrOutput.replaceAt(i, letter);
+            ++ct;
+        }
+    }
+    if (ok == 1) {
+        if (StrOutput == StrInput)
+            document.getElementById("demo").innerHTML ="bravo ai ghicit cuvantul";
+        else
+            document.getElementById("demo").innerHTML = "Bravo ai ghicit litera";
+    } else {
+        document.getElementById("demo").innerHTML = "UPS! mai incearca";
+    }
+     document.getElementById("dea").innerHTML = StrOutput;
+}
+</script>
+</body>
+</html>
